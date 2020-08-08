@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -26,6 +27,23 @@ public class Cliente {
     @Column(nullable = false, length = 150)
     @NotEmpty(message = "{campo.nome.obrigatorio}")
     private String nome;
+
+    @Column(length = 1)
+    private String sexo;
+
+    @Email
+    private String email;
+
+    @Column(name = "data_nascimento", nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "{campo.nascimento.obrigatorio}")
+    private LocalDate dataNascimento;
+
+    @Column(length = 20)
+    private String naturalidade;
+
+    @Column(length = 20)
+    private String nacionalidade;
 
     @Column(nullable = false, length = 11)
     @NotNull(message = "{campo.nome.obrigatorio}")
